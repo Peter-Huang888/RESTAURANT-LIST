@@ -31,10 +31,17 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
 
 //Search-bar
 app.get('/search', (req, res) => {
-  const keyword = req.query.keyword.toLowerCase()
+  const keyword = req.query.keyword.toLowerCase().trim()
   //看關鍵字是否包含在類別、餐廳中英名稱內
-  const filtereddRestaurant = restaurants.filter(restaurant => (restaurant.name.toLowerCase().includes(keyword)) || (restaurant.name_en.toLowerCase().includes(keyword)) || (restaurant.category.toLowerCase().includes(keyword)))
-  res.render('index', { restaurants: filtereddRestaurant, keyword: keyword })
+  const filteredRestaurant = restaurants.filter(restaurant => (restaurant.name.toLowerCase().includes(keyword)) || (restaurant.name_en.toLowerCase().includes(keyword)) || (restaurant.category.toLowerCase().includes(keyword)))
+  //Render corresponding page by search result
+  switch (filteredRestaurant.length) {
+    case 0:
+      res.render('noresults',{keyword: keyword})
+      break
+    default:
+      res.render('index', { restaurants: filteredRestaurant, keyword: keyword })
+  }
 })
 
 // Start and listen on server
