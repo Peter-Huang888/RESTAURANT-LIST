@@ -13,6 +13,9 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 // Change Template engine to Handlebars
 app.set('view engine', 'handlebars')
 
+// Setting static files
+app.use(express.static('public'))
+
 // Setting routes
 app.get('/', (req, res) => {
   res.render('index')
