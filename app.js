@@ -8,7 +8,7 @@ const restaurants = require('./restaurant.json').results
 const exphbs = require('express-handlebars')
 
 // Set Template engine Layout
-app.engine('handlebars', exphbs({defaultLayout: 'main'}))
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 
 // Change Template engine to Handlebars
 app.set('view engine', 'handlebars')
@@ -17,8 +17,16 @@ app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 
 // Setting routes
+//Render index page
 app.get('/', (req, res) => {
-  res.render('index',{restaurants: restaurants})
+  res.render('index', { restaurants: restaurants })
+})
+
+//Render show page
+app.get('/restaurants/:restaurant_id', (req, res) => {
+  const restaurantId = req.params.restaurant_id//String
+  const restaurant = restaurants.find(restaurant => restaurant.id.toString() === restaurantId)
+  res.render('show', { restaurant: restaurant })
 })
 
 // Start and listen on server
