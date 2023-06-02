@@ -33,15 +33,15 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.toLowerCase().trim()
   //看關鍵字是否包含在類別、餐廳中英名稱內
-  const filteredRestaurant = restaurants.filter(restaurant => (restaurant.name.toLowerCase().includes(keyword)) || (restaurant.name_en.toLowerCase().includes(keyword)) || (restaurant.category.toLowerCase().includes(keyword)))
-  //Render corresponding page by search result
-  switch (filteredRestaurant.length) {
-    case 0:
-      res.render('noresults',{keyword: keyword})
-      break
-    default:
-      res.render('index', { restaurants: filteredRestaurant, keyword: keyword })
-  }
+  const filteredRestaurants = restaurants.filter(
+    ({ name, name_en, category }) =>
+      name.toLowerCase().includes(keyword) ||
+      name_en.toLowerCase().includes(keyword) ||
+      category.includes(keyword)
+  )
+  //Use condition operator to render corresponding 
+  const renderPage = filteredRestaurants.length === 0 ? 'nosearchresult' : 'index'
+  res.render(renderPage, { restaurants: filteredRestaurants, keyword })
 })
 
 // Start and listen on server
