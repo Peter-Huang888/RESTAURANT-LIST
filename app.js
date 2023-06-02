@@ -29,6 +29,14 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
   res.render('show', { restaurant: restaurant })
 })
 
+//Search-bar
+app.get('/search', (req, res) => {
+  const keyword = req.query.keyword.toLowerCase()
+  //看關鍵字是否包含在類別、餐廳中英名稱內
+  const filtereddRestaurant = restaurants.filter(restaurant => (restaurant.name.toLowerCase().includes(keyword)) || (restaurant.name_en.toLowerCase().includes(keyword)) || (restaurant.category.toLowerCase().includes(keyword)))
+  res.render('index', { restaurants: filtereddRestaurant, keyword: keyword })
+})
+
 // Start and listen on server
 app.listen(port, () => {
   console.log(`Welcome to my restaurant website: http://localhot:${port}`)
