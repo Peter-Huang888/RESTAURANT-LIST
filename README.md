@@ -2,8 +2,8 @@
 一個使用 Node.js + Express 打造的餐廳網站，記錄我收藏的美食餐廳，使用者可以輸入關鍵字查詢我的口袋名單，並且點擊查看詳細的餐廳資訊
 
 ## Screen Photos - 傳案畫面
-![image]()
-![image]()
+![image](https://github.com/Peter-Huang888/RESTAURANT-LIST/blob/main/public/img/homePage.jpg)
+![image](https://github.com/Peter-Huang888/RESTAURANT-LIST/blob/main/public/img/restaurantInfo.jpg)
 
 ## Features - 產品功能
 1. 使用者可以在首頁看到所有餐廳與它們的簡單資料：
@@ -27,13 +27,13 @@
 1. 打開你的 terminal，Clone 此專案至本機電腦
 
 ```
-git clone 
+git clone https://github.com/Peter-Huang888/RESTAURANT-LIST.git
 ```
 
 2. 開啟終端機(Terminal)，進入存放此專案的資料夾
 
 ```
-cd 
+cd RESTAURANT-LIST
 ```
 
 3. 安裝 npm 套件
