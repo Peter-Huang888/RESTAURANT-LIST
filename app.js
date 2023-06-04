@@ -46,5 +46,5 @@ app.get('/search', (req, res) => {
 
 // Start and listen on server
 app.listen(port, () => {
-  console.log(`Welcome to my restaurant website: http://localhot:${port}`)
+  console.log(`Welcome to my restaurant website: http://localhost:${port}`)
 })
