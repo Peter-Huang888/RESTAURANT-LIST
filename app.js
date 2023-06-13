@@ -58,12 +58,41 @@ app.post('/restaurants', (req, res) => {
     .catch(err => console.log(err))
 })
 
-//Render show page
+//Render detail page
 app.get('/restaurants/:restaurant_id', (req, res) => {
   const id = req.params.restaurant_id
   Restaurant.findById(id)
     .lean()
     .then(restaurant => res.render('show',{restaurant}))
+    .catch(err => console.log(err))
+})
+
+// Render edit page
+app.get('/restaurants/:restaurant_id/edit', (req, res) => {
+  const id = req.params.restaurant_id
+  Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('edit', { restaurant }))
+    .catch(err => console.log(err))
+})
+
+// Edit restaurant
+app.post('/restaurants/:restaurant_id/edit', (req, res) => {
+  const id = req.params.restaurant_id
+  Restaurant.findById(id)
+    .then(restaurant => {
+      restaurant.name = req.body.name
+      restaurant.name_en = req.body.name_en
+      restaurant.category = req.body.category
+      restaurant.image = req.body.image
+      restaurant.location = req.body.location
+      restaurant.phone = req.body.phone
+      restaurant.google_map = req.body.google_map
+      restaurant.rating = Number(req.body.rating)
+      restaurant.description = req.body.description
+      restaurant.save()
+    })
+    .then(() => res.redirect(`/restaurants/${id}`))
     .catch(err => console.log(err))
 })
 
