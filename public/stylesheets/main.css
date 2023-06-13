@@ -77,7 +77,9 @@ header {
   font-size: 3rem;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-
+.create-restaurant {
+  margin: 10px 300px 0;
+}
 @media screen and (max-width: 992px) {
 
   .card img {

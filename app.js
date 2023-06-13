@@ -36,12 +36,26 @@ app.set('view engine', 'handlebars')
 // Setting static files
 app.use(express.static('public'))
 
+// Setting body-parser
+app.use(express.urlencoded({extended: true}))
+
 // Setting routes
 //Render index page
 app.get('/', (req, res) => {
   Restaurant.find()
     .lean()
-    .then(restaurants => res.render('index', { restaurants}))
+    .then(restaurants => res.render('index', { restaurants }))
+})
+
+//Render new page
+app.get('/restaurants/new', (req, res) => {
+  res.render('new')
+})
+//Create new restaurant
+app.post('/restaurants', (req, res) => {
+  Restaurant.create(req.body)
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
 })
 
 //Render show page
