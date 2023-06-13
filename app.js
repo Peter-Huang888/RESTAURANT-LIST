@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 const restaurants = require('./restaurant.json').results
+const Restaurant = require('./models/restaurant.js')
 const mongoose = require('mongoose') //載入mongoose
 // 如果在非正式環境下，載入dotenv
 if (process.env.NODE_ENV !== "production") {
@@ -38,7 +39,9 @@ app.use(express.static('public'))
 // Setting routes
 //Render index page
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurants })
+  Restaurant.find()
+    .lean()
+    .then(restaurants => res.render('index', { restaurants}))
 })
 
 //Render show page
