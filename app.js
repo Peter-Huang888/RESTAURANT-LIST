@@ -97,17 +97,27 @@ app.post('/restaurants/:restaurants_id/delete', (req, res) => {
 
 //Search-bar
 app.get('/search', (req, res) => {
-  const keywords = req.query.keywords.toLowerCase().trim()
+  if (!req.query.keywords) {
+    return res.redirect('/')
+  }
+
+  const keywords = req.query.keywords
+  const keyword = req.query.keywords.toLowerCase().trim()
   //看關鍵字是否包含在類別、餐廳中英名稱內
-  const filteredRestaurants = restaurants.filter(
-    ({ name, name_en, category }) =>
-      name.toLowerCase().includes(keywords) ||
-      name_en.toLowerCase().includes(keywords) ||
-      category.includes(keywords)
-  )
-  //Use condition operator to render corresponding 
-  const renderPage = filteredRestaurants.length === 0 ? 'nosearchresult' : 'index'
-  res.render(renderPage, { restaurants: filteredRestaurants, keywords })
+  Restaurant.find()
+    .lean()
+    .then(restaurantsData => {
+      const filteredRestaurants = restaurantsData.filter(
+        ({ name, name_en, category }) =>
+          name.toLowerCase().includes(keyword) ||
+          name_en.toLowerCase().includes(keyword) ||
+          category.includes(keyword)
+      )
+      //Use condition operator to render corresponding 
+      const renderPage = filteredRestaurants.length === 0 ? 'nosearchresult' : 'index'
+      return res.render(renderPage, { restaurants: filteredRestaurants, keywords })
+    })
+    .catch(err => console.log(err))
 })
 
 // Start and listen on server
