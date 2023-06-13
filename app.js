@@ -79,19 +79,9 @@ app.get('/restaurants/:restaurant_id/edit', (req, res) => {
 // Edit restaurant
 app.post('/restaurants/:restaurant_id/edit', (req, res) => {
   const id = req.params.restaurant_id
-  Restaurant.findById(id)
-    .then(restaurant => {
-      restaurant.name = req.body.name
-      restaurant.name_en = req.body.name_en
-      restaurant.category = req.body.category
-      restaurant.image = req.body.image
-      restaurant.location = req.body.location
-      restaurant.phone = req.body.phone
-      restaurant.google_map = req.body.google_map
-      restaurant.rating = Number(req.body.rating)
-      restaurant.description = req.body.description
-      restaurant.save()
-    })
+  const filter = { _id: id }
+  const update = req.body
+  Restaurant.findOneAndUpdate({ _id: id }, update)
     .then(() => res.redirect(`/restaurants/${id}`))
     .catch(err => console.log(err))
 })
