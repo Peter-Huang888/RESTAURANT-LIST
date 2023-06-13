@@ -37,7 +37,7 @@ app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 
 // Setting body-parser
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 
 // Setting routes
 //Render index page
@@ -63,7 +63,7 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
   const id = req.params.restaurant_id
   Restaurant.findById(id)
     .lean()
-    .then(restaurant => res.render('show',{restaurant}))
+    .then(restaurant => res.render('show', { restaurant }))
     .catch(err => console.log(err))
 })
 
@@ -96,19 +96,28 @@ app.post('/restaurants/:restaurant_id/edit', (req, res) => {
     .catch(err => console.log(err))
 })
 
+// Delete restaurant
+app.post('/restaurants/:restaurants_id/delete', (req, res) => {
+  const id = req.params.restaurants_id
+  Restaurant.findById(id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
+})
+
 //Search-bar
 app.get('/search', (req, res) => {
-  const keyword = req.query.keyword.toLowerCase().trim()
+  const keywords = req.query.keywords.toLowerCase().trim()
   //看關鍵字是否包含在類別、餐廳中英名稱內
   const filteredRestaurants = restaurants.filter(
     ({ name, name_en, category }) =>
-      name.toLowerCase().includes(keyword) ||
-      name_en.toLowerCase().includes(keyword) ||
-      category.includes(keyword)
+      name.toLowerCase().includes(keywords) ||
+      name_en.toLowerCase().includes(keywords) ||
+      category.includes(keywords)
   )
   //Use condition operator to render corresponding 
   const renderPage = filteredRestaurants.length === 0 ? 'nosearchresult' : 'index'
-  res.render(renderPage, { restaurants: filteredRestaurants, keyword })
+  res.render(renderPage, { restaurants: filteredRestaurants, keywords })
 })
 
 // Start and listen on server

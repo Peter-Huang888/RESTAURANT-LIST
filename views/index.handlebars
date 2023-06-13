@@ -43,6 +43,9 @@
               <div class="card-footer d-flex justify-content-end flex-wrap">
                 <a class="mx-2" href="/restaurants/{{this._id}}/edit"><button class="btn btn-primary btn-sm">Edit</button></a>
                 <a class="mx-2" href="/restaurants/{{this._id}}"><button class="btn btn-success btn-sm">Details</button></a>
+                <form action="/restaurants/{{this._id}}/delete" method="post">
+                  <button class=" mx-2 btn btn-danger btn-sm">Delete</button>
+                </form>
               </div>
             </div>
           </div>
