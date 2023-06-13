@@ -60,9 +60,11 @@ app.post('/restaurants', (req, res) => {
 
 //Render show page
 app.get('/restaurants/:restaurant_id', (req, res) => {
-  const restaurantId = req.params.restaurant_id//String
-  const restaurant = restaurants.find(restaurant => restaurant.id.toString() === restaurantId)
-  res.render('show', { restaurant: restaurant })
+  const id = req.params.restaurant_id
+  Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('show',{restaurant}))
+    .catch(err => console.log(err))
 })
 
 //Search-bar
