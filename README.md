@@ -6,59 +6,38 @@
 ![image](https://github.com/Peter-Huang888/RESTAURANT-LIST/blob/main/public/img/restaurantInfo.jpg)
 
 ## Features - 產品功能
-1. 使用者可以在首頁看到所有餐廳與它們的簡單資料：
-  - 餐廳照片
-  - 餐廳名稱
-  - 餐廳分類
-  - 餐廳評分
-2. 使用者可以再點進去看餐廳的詳細資訊：
-  - 類別
-  - 地址
-  - 電話
-  - 描述
-  - 圖片
-3. 使用者可以透過搜尋餐廳名稱來找到特定的餐廳
-4. 使用者可以透過搜尋餐廳類別來找到特定的餐廳
+1. 使用者可以新增一家餐廳
+2. 使用者可以瀏覽一家餐廳的詳細資訊
+3. 使用者可以瀏覽全部所有餐廳
+4. 使用者可以修改一家餐廳的資訊
+5. 使用者可以刪除一家餐廳
 
 ## Environment Setup -環境建置
-1. [Node.js](https://nodejs.org/en/)
+1. 請先確認有安裝 node.js 與 npm
+2. 將專案 clone 到本地
+3. 在本地開啟之後，透過終端機進入資料夾，輸入：
 
-## Installing - 專案安裝流程
-1. 打開你的 terminal，Clone 此專案至本機電腦
+   ```bash
+   npm install
+   ```
 
-```
-git clone https://github.com/Peter-Huang888/RESTAURANT-LIST.git
-```
+4. 安裝完畢後，繼續輸入：
 
-2. 開啟終端機(Terminal)，進入存放此專案的資料夾
+   ```bash
+   npm run start
+   ```
 
-```
-cd RESTAURANT-LIST
-```
+5. 若看見此行訊息則代表順利運行，打開瀏覽器進入到以下網址
 
-3. 安裝 npm 套件
+   ```bash
+   Welcome to my restaurant website: http://localhost:3000
+   ```
 
-```
-在 Terminal 輸入 npm install 指令
-```
+6. 若欲暫停使用
 
-4. 安裝 nodemon 套件
-
-```
-在 Terminal 輸入 nodemon app.js 指令
-```
-
-5. 啟動伺服器，執行 app.js 檔案
-
-```
-nodemon app.js
-```
-
-6. 當 terminal 出現以下字樣，表示伺服器與資料庫已啟動並成功連結
-
-```
-Welcome to my restaurant website: http://localhost:3000
-```
+   ```bash
+   ctrl + c
+   ```
 
 現在，你可開啟任一瀏覽器瀏覽器輸入 [http://localhost:3000](http://localhost:3000) 開始使用我的美食網囉！
 
@@ -66,6 +45,9 @@ Welcome to my restaurant website: http://localhost:3000
 - [Visual Studio Code](https://visualstudio.microsoft.com/zh-hant/) - 開發環境
 - [Express](https://www.npmjs.com/package/express) - 應用程式架構
 - [Express-Handlebars](https://www.npmjs.com/package/express-handlebars) - 模板引擎
+- [body-parser](https://www.npmjs.com/package/body-parser)
+- MongoDB
+- [mongoose](https://www.npmjs.com/package/mongoose)
 - Bootstrap 5.2.1
 - Font-awesome 5.8.1
 ## Contributor - 專案開發人員
