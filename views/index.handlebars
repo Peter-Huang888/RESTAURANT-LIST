@@ -1,4 +1,4 @@
-<div class="container d-flex justify-content-between sas">
+<div class="container">
   <!-- search bar -->
   <div class=" search-bar">
     <div class="search-bar-outer">
@@ -10,24 +10,24 @@
               aria-describedby="button-addon2" value="{{keywords}}" />
             <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
           </div>
+          <!--sort -->
+          <div class="sort">
+            <select class="form-select" aria-label="select sort method" name="sort">
+              <option value="0" {{#sortMethod sort 0}}selected {{/sortMethod}}> Default Sort </option>
+              <option value="1" {{#sortMethod sort 1}}selected {{/sortMethod}}>A->Z</option>
+              <option value="2" {{#sortMethod sort 2}}selected {{/sortMethod}}>Z->A</option>
+              <option value="3" {{#sortMethod sort 3}}selected {{/sortMethod}}>類別</option>
+              <option value="4" {{#sortMethod sort 4}}selected {{/sortMethod}}>評分：高->低</option>
+              <option value="5" {{#sortMethod sort 5}}selected {{/sortMethod}}>評分：低->高</option>
+            </select>
+          </div>
+          
         </form>
       </div>
     </div>
   </div>
 
-  <!--sort dropdown -->
-  <div class="sort dropdown">
-    <button class=" btn  btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Sort
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="/sort/name-asc">A->Z</a></li>
-      <li><a class="dropdown-item" href="/sort/name-desc">Z->A</a></li>
-      <li><a class="dropdown-item" href="/sort/category">類別</a></li>
-      <li><a class="dropdown-item" href="/sort/rating-desc">評分：高->低</a></li>
-      <li><a class="dropdown-item" href="/sort/rating-asc">評分：低->高</a></li>
-    </ul>
-  </div>
+  
 </div>
 <!-- restaurant list -->
 <div class="container mt-5">

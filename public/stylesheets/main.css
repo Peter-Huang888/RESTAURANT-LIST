@@ -21,7 +21,8 @@ header {
 }
 
 .search-bar .search-bar-outer {
-  min-width: 25em;
+  margin: 0 auto;
+  max-width: 680px;
   background-color: #fce2cf;
   border-radius: 8px;
   padding: 20px 30px;
@@ -80,12 +81,6 @@ header {
   margin: 10px 300px 0;
 }
 
-.sas {
-  width : 68em;
-}
-.no-results {
-  width: 68rem;
-}
 @media screen and (max-width: 992px) {
 
   .card img {

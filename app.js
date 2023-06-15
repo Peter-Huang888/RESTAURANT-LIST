@@ -9,11 +9,19 @@ require('./config/mongoose')
 
 // Include Template engine Handlebars
 const exphbs = require('express-handlebars')
+const Handlebars = require('handlebars')
 // Set Template engine Layout
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
-
 // Change Template engine to Handlebars
 app.set('view engine', 'handlebars')
+// Handlebars Helper
+Handlebars.registerHelper('sortMethod', function (sort, value, opts) {
+ if(sort === value) {
+  return opts.fn(this)
+ } else {
+  return opts.inverse(this)
+ }
+})
 
 // Setting static files
 app.use(express.static('public'))
