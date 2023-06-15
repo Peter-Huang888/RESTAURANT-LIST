@@ -4,6 +4,7 @@ const app = express()
 const port = 3000
 const restaurants = require('./restaurant.json').results
 const Restaurant = require('./models/restaurant.js')
+const methodOverride = require('method-override')// 載入method override
 const mongoose = require('mongoose') //載入mongoose
 // 如果在非正式環境下，載入dotenv
 if (process.env.NODE_ENV !== "production") {
@@ -38,7 +39,8 @@ app.use(express.static('public'))
 
 // Setting body-parser
 app.use(express.urlencoded({ extended: true }))
-
+// Setting method override
+app.use(methodOverride('_method'))
 // Setting routes
 //Render index page
 app.get('/', (req, res) => {
@@ -77,7 +79,7 @@ app.get('/restaurants/:restaurant_id/edit', (req, res) => {
 })
 
 // Edit restaurant
-app.post('/restaurants/:restaurant_id/edit', (req, res) => {
+app.put('/restaurants/:restaurant_id', (req, res) => {
   const id = req.params.restaurant_id
   const filter = { _id: id }
   const update = req.body
@@ -87,7 +89,7 @@ app.post('/restaurants/:restaurant_id/edit', (req, res) => {
 })
 
 // Delete restaurant
-app.post('/restaurants/:restaurants_id/delete', (req, res) => {
+app.delete('/restaurants/:restaurants_id', (req, res) => {
   const id = req.params.restaurants_id
   Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
