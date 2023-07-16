@@ -3,6 +3,7 @@ const express = require('express')
 const router = require('./routes')
 const app = express()
 const port = 3000
+const session = require('express-session')
 const methodOverride = require('method-override')// 載入method override
 
 require('./config/mongoose')
@@ -30,6 +31,13 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 // Setting method override
 app.use(methodOverride('_method'))
+// Setting express-session
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true
+}
+))
 // Setting routes
 app.use(router)
 // Start and listen on server
