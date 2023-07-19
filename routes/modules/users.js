@@ -1,21 +1,16 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../../models/users')
+const passport = require('passport')
 
 router.get('/login', (req, res) => {
   res.render('Login')
 })
 
-router.post('/login', (req, res) => {
-  const { email, password } = req.body
-  User.findOne({ email })
-    .then(user => {
-      if (user && password === user.password) return res.redirect('/')
-      console.log('Email 或 密碼輸入錯誤')
-      return res.redirect('/users/login')
-    })
-    .catch(err => console.log(err))
-})
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/users/login'
+}))
 router.get('/register', (req, res) => {
   res.render('Register')
 })

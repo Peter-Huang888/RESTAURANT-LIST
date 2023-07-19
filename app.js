@@ -4,6 +4,7 @@ const router = require('./routes')
 const app = express()
 const port = 3000
 const session = require('express-session')
+const usePassport = require('./config/passport')
 const methodOverride = require('method-override')// 載入method override
 
 require('./config/mongoose')
@@ -26,7 +27,6 @@ Handlebars.registerHelper('sortMethod', function (sort, value, opts) {
 
 // Setting static files
 app.use(express.static('public'))
-
 // Setting body-parser
 app.use(express.urlencoded({ extended: true }))
 // Setting method override
@@ -38,6 +38,7 @@ app.use(session({
   saveUninitialized: true
 }
 ))
+usePassport(app)
 // Setting routes
 app.use(router)
 // Start and listen on server
