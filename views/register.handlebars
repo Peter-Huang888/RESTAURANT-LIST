@@ -3,24 +3,24 @@
     <div class="card card-body">
       <h1 class="text-center mt-3">註冊</h1>
       <form action="/users/register" method="POST">
-        <p style="color: red;">*為必填</p>
+        <p >註：<span class="text-danger">*</span>為必填</p>
         <div class="mb-3">
           <label for="name" class="mb-2">名字</label>
           <input type="name" id="name" name="name" class="form-control" placeholder="請輸入名字" value="{{name}}">
         </div>
         <div class="mb-3">
-          <label for="email" class="mb-2">Email*</label>
-          <input type="email" id="email" name="email" class="form-control" placeholder="請輸入Email" value="{{email}}">
+          <label for="email" class="mb-2">Email<span class="text-danger">*</span></label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="請輸入Email" value="{{email}}" required>
         </div>
         <div class="mb-3">
-          <label for="password" class="mb-2">密碼*</label>
+          <label for="password" class="mb-2">密碼<span class="text-danger">*</span></label>
           <input type="password" id="password" name="password" class="form-control" placeholder="請輸入密碼"
-            value="{{password}}">
+            value="{{password}}" required>
         </div>
         <div class="mb-3">
-          <label for="password" class="mb-2">確認密碼*</label>
+          <label for="password" class="mb-2">確認密碼<span class="text-danger">*</span></label>
           <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
-            placeholder="請輸入密碼" value="{{confirmPassword}}">
+            placeholder="請輸入密碼" value="{{confirmPassword}}" required>
         </div>
         <button type="submit" class="btn btn-primary btn-block">註冊</button>
         <a href="/auth/facebook" ><button type="button" class="btn btn-info btn-block" style="color: #FFFFFF;">使用Facebook帳號登入</button></a>
