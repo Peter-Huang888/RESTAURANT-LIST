@@ -6,6 +6,7 @@ const port = 3000
 const session = require('express-session')
 const usePassport = require('./config/passport')
 const methodOverride = require('method-override')// 載入method override
+const flash = require('connect-flash')
 
 require('./config/mongoose')
 
@@ -39,10 +40,13 @@ app.use(session({
 }
 ))
 usePassport(app)
+app.use(flash())
 // Setting local variables
-app.use((req, res, next)=> {
+app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
+  res.locals.logout_success_msg = req.flash('logout_success_msg')
+  res.locals.login_warning_msg = req.flash('login_warning_msg')
   next()
 })
 // Setting routes
