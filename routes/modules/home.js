@@ -1,15 +1,18 @@
 const express = require('express')
 const router = express.Router()
 const Restaurant = require('../../models/restaurant')
+const User = require('../../models/users')
 
 const sortMethod = [{ _id: 'asc' }, { name: 'asc' }, { name: 'desc' }, { category: 'asc' }, { rating: 'desc' }, { rating: 'asc' }]
 
 //Render index page
 router.get('/', (req, res) => {
-  Restaurant.find()
+  const userId = req.user._id
+  Restaurant.find({ userId })
     .lean()
-    .sort({_id: 'asc'})
+    .sort({ _id: 'asc' })
     .then(restaurants => res.render('index', { restaurants }))
+    .catch(err => console.log(err))
 })
 
 router.get('/search', (req, res) => {
@@ -19,8 +22,9 @@ router.get('/search', (req, res) => {
   const keywords = req.query.keywords
   const keyword = req.query.keywords.toLowerCase().trim()
   const sort = Number(req.query.sort)
+  const userId = req.user._id
   //看關鍵字是否包含在類別、餐廳中英名稱內
-  Restaurant.find()
+  Restaurant.find({ userId })
     .lean()
     .sort(sortMethod[sort])
     .then(restaurantsData => {
