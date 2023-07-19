@@ -24,9 +24,15 @@
           我的餐廳清單
         </a>
       </div>
+      {{#if isAuthenticated}}
+      <div>
+        <a href="/users/logout" class="btn btn-primary me-5">登出</a>
+      </div>
+      {{else}}
       <div>
         <a href="/users/login" class="btn btn-primary me-5">登入</a>
       </div>
+      {{/if}}
     </nav>
 
     <div class="banner"></div>

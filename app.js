@@ -18,11 +18,11 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 // Handlebars Helper
 Handlebars.registerHelper('sortMethod', function (sort, value, opts) {
- if(sort === value) {
-  return opts.fn(this)
- } else {
-  return opts.inverse(this)
- }
+  if (sort === value) {
+    return opts.fn(this)
+  } else {
+    return opts.inverse(this)
+  }
 })
 
 // Setting static files
@@ -39,6 +39,12 @@ app.use(session({
 }
 ))
 usePassport(app)
+// Setting local variables
+app.use((req, res, next)=> {
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  next()
+})
 // Setting routes
 app.use(router)
 // Start and listen on server
