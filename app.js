@@ -2,14 +2,12 @@
 const express = require('express')
 const router = require('./routes')
 const app = express()
-const port = 3000
 const session = require('express-session')
 const usePassport = require('./config/passport')
 const methodOverride = require('method-override')// 載入method override
 const flash = require('connect-flash')
-
 require('./config/mongoose')
-
+const port = process.env.PORT
 // Include Template engine Handlebars
 const exphbs = require('express-handlebars')
 const Handlebars = require('handlebars')
