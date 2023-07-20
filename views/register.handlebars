@@ -1,10 +1,10 @@
-<div class="row mt-5">
+<div class="row mt-5 mx-auto w-75">
   <div class="col-md-6 m-auto">
     <div class="card card-body">
       <h1 class="text-center mt-3">註冊</h1>
       {{>messages}}
       <form action="/users/register" method="POST">
-        <p >註：<span class="text-danger">*</span>為必填</p>
+        <p>註：<span class="text-danger">*</span>為必填</p>
         <div class="mb-3">
           <label for="name" class="mb-2">名字</label>
           <input type="name" id="name" name="name" class="form-control" placeholder="請輸入名字" value="{{name}}">
@@ -16,19 +16,27 @@
         <div class="mb-3">
           <label for="password" class="mb-2">密碼<span class="text-danger">*</span></label>
           <input type="password" id="password" name="password" class="form-control" placeholder="請輸入密碼"
-            value="{{password}}" >
+            value="{{password}}">
         </div>
         <div class="mb-3">
           <label for="password" class="mb-2">確認密碼<span class="text-danger">*</span></label>
-          <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
-            placeholder="請輸入密碼" value="{{confirmPassword}}">
+          <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="請輸入密碼"
+            value="{{confirmPassword}}">
         </div>
-        <button type="submit" class="btn btn-primary btn-block">註冊</button>
-        <a href="/auth/facebook" ><button type="button" class="btn btn-info btn-block" style="color: #FFFFFF;">使用Facebook帳號登入</button></a>
+        <div class="row mx-auto">
+          <button type="submit" class="btn btn-primary btn-block">註冊</button>
+        </div>
       </form>
       <p class="lead mt-4">
         已經有帳號了嗎？ <a href="/users/login">登入</a>
       </p>
+      <div>
+        <a href="/auth/facebook" class="row text-decoration-none mx-auto">
+          <button type="button" class="btn btn-info btn-block fs-5" style="color: #FFFFFF;">
+            <i class="fa-brands fa-square-facebook fa-lg"></i> 使用Facebook帳號快速登入
+          </button>
+        </a>
+      </div>
     </div>
   </div>
 </div>
