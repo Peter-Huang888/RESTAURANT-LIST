@@ -1,9 +1,11 @@
-## 我的美食餐廳
-一個使用 Node.js + Express 打造的餐廳網站，記錄我收藏的美食餐廳，使用者可以輸入關鍵字查詢我的口袋名單，並且點擊查看詳細的餐廳資訊
+## 創建自己的美食餐廳
+一個使用 Node.js + Express 打造的餐廳網站，可以記錄使用者收藏的美食餐廳，使用者可以輸入關鍵字查詢自己的口袋名單，並且點擊查看詳細的餐廳資訊，也可以新增、編輯、刪除餐廳資訊
 
 ## Screen Photos - 傳案畫面
 ![image](https://github.com/Peter-Huang888/RESTAURANT-LIST/blob/main/public/img/homePage.jpg)
 ![image](https://github.com/Peter-Huang888/RESTAURANT-LIST/blob/main/public/img/restaurantInfo.jpg)
+![image](https://github.com/Peter-Huang888/RESTAURANT-LIST/blob/main/public/img/loginPage.jpg)
+![image](https://github.com/Peter-Huang888/RESTAURANT-LIST/blob/main/public/img/registerPage.jpg)
 
 ## Features - 產品功能
 1. 使用者可以註冊帳號，註冊的資料包括：名字、email、密碼、確認密碼。
